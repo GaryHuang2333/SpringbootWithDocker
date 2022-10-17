@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: documents-service
+
+server:
+  port: 0
