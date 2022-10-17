@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mongo-document-repository
+
+server:
+  port: 0
+
+

@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:9201,localhost:9202,localhost:9203
+      database: userDB

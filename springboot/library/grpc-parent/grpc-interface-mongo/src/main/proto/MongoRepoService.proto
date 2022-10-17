@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = false;
+option java_package = "com.gary.library.grpcinterfacemongo";
+option java_outer_classname = "MongoRepoProto";
+
+package grpcinterfacemongo;
+
+service MongoRepoService {
+  rpc hello(StringRequest) returns (StringResponse) {}
+}
+
+message StringRequest{
+  string name=1;
+}
+message StringResponse{
+  string result=1;
+}

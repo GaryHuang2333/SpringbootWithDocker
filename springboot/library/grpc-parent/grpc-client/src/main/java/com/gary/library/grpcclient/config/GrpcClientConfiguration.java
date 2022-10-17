@@ -1,9 +1,10 @@
-package com.gary.service.documentsservice.config;
+package com.gary.library.grpcclient.config;
 
 import com.gary.library.yamlpropertysource.YamlPropertySourceFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-public class DocumentsServiceConfiguration {
+@PropertySource(value = "classpath:application-grpcclient.yml", factory = YamlPropertySourceFactory.class)
+public class GrpcClientConfiguration {
 }
