@@ -6,9 +6,9 @@
         <groupId>com.gary.library</groupId>
         <artifactId>library-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
     </parent>
-    <groupId>com.gary.library</groupId>
+<!--    <groupId>com.gary.library</groupId>-->
     <artifactId>grpc-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -45,7 +45,7 @@
 <!--                    <protoSourceRoot>${basedir}/src/main/resources/proto</protoSourceRoot>-->
 <!--                    <outputDirectory>${basedir}/src/main/java</outputDirectory>-->
                     <!-- set clearOutputDirectory=false to avoid goal=compile got auto deleted when running goal=compile-custom -->
-                    <clearOutputDirectory>false</clearOutputDirectory>
+<!--                    <clearOutputDirectory>false</clearOutputDirectory>-->
                 </configuration>
                 <executions>
                     <execution>
