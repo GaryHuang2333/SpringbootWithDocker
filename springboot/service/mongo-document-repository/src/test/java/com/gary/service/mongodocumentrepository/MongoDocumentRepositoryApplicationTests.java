@@ -1,10 +1,10 @@
-package com.gary.service.documentsservice;
+package com.gary.service.mongodocumentrepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 //@SpringBootTest
-class DocumentsServiceApplicationTests {
+class MongoDocumentRepositoryApplicationTests {
 
 //    @Test
     void contextLoads() {

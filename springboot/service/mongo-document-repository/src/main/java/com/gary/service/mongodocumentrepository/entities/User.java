@@ -8,19 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Optional;
 
 /**
- *       - user
- *               - name : string
- *               - age : int ([0,120])
- *               - gender : string (male/female)
- *               - hobbies : string (list of hobbies, seperated by ",")
- *               - fans : string (list of usernames, seperated by ",")
- *               - fansNum : int
- *               - followings : string (list of usernames, seperated by ",")
- *               - followingsNum : int
- *               - like : string (list of blog id, seperated by ",")
- *               - favourite : string (list of blog id, seperated by ",")
- *               - blogsIds : string (list of posted blog id, repost is included, seperated by ",")
- *               - blogsNum : int
+ * - user
+ *      - name : string
+ *      - age : int ([0,120])
+ *      - gender : string (male/female)
+ *      - hobbies : string (list of hobbies, seperated by ",")
+ *      - fans : string (list of usernames, seperated by ",")
+ *      - fansNum : int
+ *      - followings : string (list of usernames, seperated by ",")
+ *      - followingsNum : int
+ *      - like : string (list of blog id, seperated by ",")
+ *      - favourite : string (list of blog id, seperated by ",")
+ *      - blogsIds : string (list of posted blog id, repost is included, seperated by ",")
+ *      - blogsNum : int
  */
 
 @Document("user")
@@ -40,7 +40,7 @@ public class User {
     private String blogsIds;
     private int blogsNum;
 
-    public void setRandomName(){
+    public void setRandomName() {
         double random = Math.floor(Math.random() * 1000);
         this.name = name + "_" + random;
     }
@@ -48,6 +48,14 @@ public class User {
     public void renewObjectId() {
         ObjectId objectId = new ObjectId();
         this.id = objectId.toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

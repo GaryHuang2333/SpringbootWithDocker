@@ -1,17 +1,48 @@
 syntax = "proto3";
 option java_multiple_files = true;
-option java_package = "com.gary.library.grpc.interfacemongo";
+option java_package = "com.gary.library.grpc.interfaces.mongo.repo";
 option java_outer_classname = "MongoRepoProto";
 
-//package grpcinterfacemongo;
+import "google/protobuf/empty.proto";
 
 service MongoRepoService {
   rpc hello(StringRequest) returns (StringResponse) {}
+  rpc getAllUsers(google.protobuf.Empty) returns (UserListResponse) {}
+  rpc insertRandomUser(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc findByName(NameRequest) returns (UserResponse) {}
 }
 
 message StringRequest{
-  string name=1;
+  string value = 1;
 }
 message StringResponse{
-  string result=1;
+  string value = 1;
+}
+
+message UserListResponse{
+  repeated User User = 1;
+}
+
+message NameRequest {
+  string name = 1;
+}
+
+message UserResponse{
+  User user = 1;
+}
+
+message User{
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+  string gender = 4;
+  string hobbies = 5;
+  string fans = 6;
+  int32 fansNum = 7;
+  string followings = 8;
+  int32 followingNum = 9;
+  string like = 10;
+  string favourite = 11;
+  string blogsIds = 12;
+  int32 blogsNum = 13;
 }
