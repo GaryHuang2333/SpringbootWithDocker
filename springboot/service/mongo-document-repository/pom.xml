@@ -33,6 +33,11 @@
         </dependency>
         <dependency>
             <groupId>com.gary.library</groupId>
+            <artifactId>mongo-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gary.library</groupId>
             <artifactId>grpc-server</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

@@ -1,6 +1,7 @@
 package com.gary.service.documentsservice.service;
 
 import com.gary.library.grpc.interfaces.mongo.repo.*;
+import com.gary.library.mongomodel.utils.UserUtil;
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.slf4j.Logger;
@@ -23,24 +24,27 @@ public class MongoServiceGrpc {
         return stringResponse1.getValue();
     }
 
-    public void insertRandomUser() {
-        serviceBlockingStub.insertRandomUser(Empty.newBuilder().build());
+    public com.gary.library.mongomodel.entities.User insertRandomUser() {
+        UserResponse userResponse = serviceBlockingStub.insertRandomUser(Empty.newBuilder().build());
+        com.gary.library.mongomodel.entities.User insertedUser = UserUtil.toModelUser(userResponse.getUser());
+        return insertedUser;
     }
 
-    public String findByName(String name) {
+    public com.gary.library.mongomodel.entities.User findByName(String name) {
         name = Optional.ofNullable(name).orElse("EmptyName");
         UserResponse userResponse = serviceBlockingStub.findByName(NameRequest.newBuilder().setName(name).build());
-        User user = userResponse.getUser();
-        logger.debug("find by name = {}, result = {}", name, user);
-        System.out.println(String.format("find by name = %s, result = %s", name, user));
-        return String.format("find by name = %s, result = %s", name, user);
+        com.gary.library.mongomodel.entities.User findUser = UserUtil.toModelUser(userResponse.getUser());
+        logger.debug("find by name = {}, result = {}", name, findUser);
+        System.out.println(String.format("find by name = %s, result = %s", name, findUser));
+        return findUser;
     }
 
-    public String getAllUser(){
+    public List<com.gary.library.mongomodel.entities.User> getAllUser() {
         UserListResponse userListResponse = serviceBlockingStub.getAllUsers(Empty.newBuilder().build());
         List<User> userList = userListResponse.getUserList();
-        logger.debug("get user list with size = {}", userList.size());
-        return String.format("get user list with size = %s", userList.size());
+        List<com.gary.library.mongomodel.entities.User> getUserList = UserUtil.toModelUserList(userList);
+        logger.debug("get user list = {}", getUserList);
+        return getUserList;
 
     }
 

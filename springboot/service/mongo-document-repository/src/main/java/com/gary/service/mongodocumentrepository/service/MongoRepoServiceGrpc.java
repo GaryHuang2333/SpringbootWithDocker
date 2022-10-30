@@ -1,15 +1,17 @@
 package com.gary.service.mongodocumentrepository.service;
 
 import com.gary.library.grpc.interfaces.mongo.repo.*;
-import com.gary.service.mongodocumentrepository.entities.User;
+import com.gary.library.mongomodel.entities.User;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static com.gary.library.mongomodel.utils.UserUtil.toGrpcUser;
+import static com.gary.library.mongomodel.utils.UserUtil.toGrpcUserList;
 
 @GrpcService
 public class MongoRepoServiceGrpc extends com.gary.library.grpc.interfaces.mongo.repo.MongoRepoServiceGrpc.MongoRepoServiceImplBase {
@@ -33,9 +35,10 @@ public class MongoRepoServiceGrpc extends com.gary.library.grpc.interfaces.mongo
     }
 
     @Override
-    public void insertRandomUser(Empty request, StreamObserver<Empty> responseObserver) {
-        userService.insertRandomUser();
-        responseObserver.onNext(request);
+    public void insertRandomUser(Empty request, StreamObserver<UserResponse> responseObserver) {
+        User user = userService.insertRandomUser();
+        UserResponse userResponse = UserResponse.newBuilder().setUser(toGrpcUser(user)).build();
+        responseObserver.onNext(userResponse);
         responseObserver.onCompleted();
     }
 
@@ -46,38 +49,4 @@ public class MongoRepoServiceGrpc extends com.gary.library.grpc.interfaces.mongo
         responseObserver.onCompleted();
     }
 
-    private com.gary.library.grpc.interfaces.mongo.repo.User toGrpcUser(User user) {
-        com.gary.library.grpc.interfaces.mongo.repo.User.Builder builder = com.gary.library.grpc.interfaces.mongo.repo.User.newBuilder();
-
-        builder.setId(user.getId());
-        builder.setName(user.getName());
-        builder.setAge(user.getAge());
-        builder.setGender(user.getGender());
-        builder.setHobbies(user.getHobbies());
-        builder.setFans(user.getFans());
-        builder.setFansNum(user.getFansNum());
-        builder.setFollowings(user.getFollowings());
-        builder.setFollowingNum(user.getFollowingNum());
-        builder.setLike(user.getLike());
-        builder.setFavourite(user.getFavourite());
-        builder.setBlogsIds(user.getBlogsIds());
-        builder.setBlogsNum(user.getBlogsNum());
-
-        com.gary.library.grpc.interfaces.mongo.repo.User build = builder.build();
-        return build;
-    }
-
-    private List<com.gary.library.grpc.interfaces.mongo.repo.User> toGrpcUserList(List<User> userList) {
-        ArrayList<com.gary.library.grpc.interfaces.mongo.repo.User> grpcUserList = new ArrayList<>();
-
-        if (userList == null || userList.size() <= 0) {
-            return grpcUserList;
-        }
-
-        for (User user : userList) {
-            grpcUserList.add(toGrpcUser(user));
-        }
-
-        return grpcUserList;
-    }
 }

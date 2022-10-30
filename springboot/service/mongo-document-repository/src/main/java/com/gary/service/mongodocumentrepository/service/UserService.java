@@ -1,7 +1,7 @@
 package com.gary.service.mongodocumentrepository.service;
 
+import com.gary.library.mongomodel.entities.User;
 import com.gary.service.mongodocumentrepository.dao.UserRepository;
-import com.gary.service.mongodocumentrepository.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,13 @@ public class UserService {
         return userList;
     }
 
-    public void insertRandomUser() {
+    public User insertRandomUser() {
         User user = userRepository.findFirstByName("testUser1");
         user.setRandomName();
         user.renewObjectId();
-        User insert = userRepository.insert(user);
+        User insertedUser = userRepository.insert(user);
         logger.debug("insert user = {}", user);
+        return insertedUser;
     }
 
     public User findByName(String name) {

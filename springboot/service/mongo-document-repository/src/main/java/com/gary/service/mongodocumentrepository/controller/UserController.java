@@ -1,6 +1,6 @@
 package com.gary.service.mongodocumentrepository.controller;
 
-import com.gary.service.mongodocumentrepository.entities.User;
+import com.gary.library.mongomodel.entities.User;
 import com.gary.service.mongodocumentrepository.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

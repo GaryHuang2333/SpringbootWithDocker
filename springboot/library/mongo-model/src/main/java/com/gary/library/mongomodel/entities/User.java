@@ -1,4 +1,4 @@
-package com.gary.service.mongodocumentrepository.entities;
+package com.gary.library.mongomodel.entities;
 
 
 import org.bson.types.ObjectId;

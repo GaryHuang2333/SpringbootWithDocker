@@ -8,7 +8,7 @@ import "google/protobuf/empty.proto";
 service MongoRepoService {
   rpc hello(StringRequest) returns (StringResponse) {}
   rpc getAllUsers(google.protobuf.Empty) returns (UserListResponse) {}
-  rpc insertRandomUser(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc insertRandomUser(google.protobuf.Empty) returns (UserResponse) {}
   rpc findByName(NameRequest) returns (UserResponse) {}
 }
 
